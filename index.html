@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目名称</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        function changeUrl(url) {
+            document.querySelector('.my_iframe').src = url;
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <a class="navbar-brand" href="#"><img class="logo_img" src="./images/static/logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" onclick="changeUrl('./overview.html')">鸟瞰全景 <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="changeUrl('./area.html')">区位配套</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="changeUrl('./tour_1.html')">景观漫游</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="changeUrl('./photograph.html')">户型展示</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="changeUrl('./video.html')">宣传大片</a>
+                </li>
+            </ul>
+            <div class="contact">
+                <a href="tel:023-52614337">
+                    <img src="./images/phone.svg" alt="电话：023-52614337" title="电话：023-52614337">
+                </a>
+                <a target="_blank" rel="noopener noreferrer"
+                    href="https://map.baidu.com/poi/%E4%BC%97%E7%AB%8B%C2%B7%E6%BE%B3%E6%B4%B2%E5%9F%8E/@11995075.505,3465409.01,19z?uid=94a14b77fc389c7bc03644fe&ugc_type=3&ugc_ver=1&device_ratio=1&compat=1&querytype=detailConInfo&da_src=shareurl">
+                    <img src="./images/map_weather.svg" alt="地址" title="地址" style="margin-left: 30px;">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <iframe title="" src="./overview.html" class="my_iframe"></iframe>
+</body>
+
+</html>

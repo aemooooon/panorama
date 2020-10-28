@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D viewer</title>
+    <link rel="stylesheet" href="./dist/photo-sphere-viewer.css" />
+    <link rel="stylesheet" href="./dist/plugins/markers.css">
+    <script src="./js/three.min.js"></script>
+    <script src="./js/browser.min.js"></script>
+    <script src="./js/polyfill.min.js"></script>
+    <script src="./dist/photo-sphere-viewer.js"></script>
+    <script src="./dist/plugins/markers.js"></script>
+    <style>
+        /* the viewer container must have a defined size */
+        #viewer {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #transition {
+            background: url(./images/arrow_up.png) 0 0 no-repeat;
+            width: 128px;
+            height: 128px;
+        }
+
+        @keyframes playfox {
+            0% {
+                background-position: 0 -3200px;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        @-webkit-keyframes playfox {
+            0% {
+                background-position: 0 -3200px;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        #transition {
+            animation: playfox 1s steps(25) infinite;
+        }
+
+
+        .custom_button {
+            width: auto;
+        }
+
+        .custom_button_actived {
+            width: auto;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div id="viewer">
+    </div>
+    <script>
+        var viewer = new PhotoSphereViewer.Viewer({
+            container: document.querySelector('#viewer'),
+            panorama: './images/static/20201020153004.jpg',
+            caption: " ",
+            loadingImg: './images/loading.gif',
+            defaultZoomLvl: 50,
+            autorotateDelay: 1000, // 多久开始旋转
+            autorotateSpeed: '1rpm',
+            lang: {
+                autorotate: '自动旋转',
+                zoom: '缩放',
+                zoomOut: '缩小',
+                zoomIn: '放大',
+                download: '下载',
+                fullscreen: '全屏',
+                menu: '菜单',
+                twoFingers: ['使用手指导航'],
+                loadError: '全景图加载错误',
+            },
+            loadingTxt: '正在加载。。。', // 也可以使用图片
+            navbar: [
+                'autorotate',
+                'zoom',
+                'caption',
+                {
+                    id: 'my-button1',
+                    content: '室外',
+                    className: 'custom_button custom_button_actived',
+                    onClick: () => {
+                        window.location.href='./tour_1.html';
+                    }
+                },
+                {
+                    id: 'my-button2',
+                    content: '室内',
+                    className: 'custom_button',
+                    onClick: () => {
+                        location.href="./tour_2.html";
+                    }
+                },
+                'fullscreen',
+            ],
+
+            plugins: [
+                [PhotoSphereViewer.MarkersPlugin, {
+                    markers: [
+                        {
+                            id: 'h1',
+                            longitude: '3.062',
+                            latitude: '-0.2150',
+                            html: '<div id="transition"></div>',
+                            anchor: 'bottom center',
+                            tooltip: '点击进入房间',
+                        },
+                    ]
+                }]
+            ],
+
+        });
+
+        var markersPlugin = viewer.getPlugin(PhotoSphereViewer.MarkersPlugin);
+
+        markersPlugin.on('select-marker', (e, marker) => {
+            console.log(`Cursor is over marker ${marker.id}`);
+            if (marker.id == 'h1') {
+                window.location.href="tour_2.html";
+            }
+        });
+
+
+        viewer.once('ready', () => {
+
+        });
+
+        viewer.on('click', (e, data) => {
+            console.log(markersPlugin);
+            console.log(`${data.rightclick ? 'right clicked' : 'clicked'} at longitude: ${data.longitude} latitude: ${data.latitude}`);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D viewer</title>
+    <link rel="stylesheet" href="./dist/photo-sphere-viewer.css" />
+    <link rel="stylesheet" href="./dist/plugins/markers.css">
+    <script src="./js/three.min.js"></script>
+    <script src="./js/browser.min.js"></script>
+    <script src="./js/polyfill.min.js"></script>
+    <script src="./dist/photo-sphere-viewer.js"></script>
+    <script src="./dist/plugins/markers.js"></script>
+    <style>
+        /* the viewer container must have a defined size */
+        #viewer {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hot_box {
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .hot_title {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            border: 1px solid #ffffff;
+            padding: 3px 10px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .custom_button {
+            width: auto;
+        }
+
+        .custom_button_actived {
+            width: auto;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #transition {
+            background: url(./images/circle_64.png) 0 0 no-repeat;
+            width: 64px;
+            height: 64px;
+            margin: auto;
+        }
+
+        @keyframes playfox {
+            0% {
+                background-position: 0 -1600px;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        @-webkit-keyframes playfox {
+            0% {
+                background-position: 0 -1600px;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        #transition {
+            animation: playfox 1s steps(25) infinite;
+        }
+
+        #arrow_down {
+            background: url(./images/arrow_down_64.png) 0 0 no-repeat;
+            width: 64px;
+            height: 64px;
+            margin: auto;
+        }
+
+        #arrow_down {
+            animation: playfox 1s steps(25) infinite;
+        }
+
+        #location {
+            background: url(./images/location_64.png) 0 0 no-repeat;
+            width: 64px;
+            height: 64px;
+            margin: auto;
+        }
+
+        @keyframes playfox_ {
+            0% {
+                background-position: 0 -640px;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        @-webkit-keyframes playfox_ {
+            0% {
+                background-position: 0 -640px;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        #location {
+            animation: playfox_ 1s steps(10) infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="viewer">
+    </div>
+    <script>
+        var viewer = new PhotoSphereViewer.Viewer({
+            container: document.querySelector('#viewer'),
+            panorama: './images/static/20201020153038.jpg',
+            caption: "区位配套",
+            loadingImg: './images/loading.gif',
+            defaultZoomLvl: 50,
+            autorotateDelay: 1000, // 多久开始旋转
+            autorotateSpeed: '1rpm',
+            lang: {
+                autorotate: '自动旋转',
+                zoom: '缩放',
+                zoomOut: '缩小',
+                zoomIn: '放大',
+                download: '下载',
+                fullscreen: '全屏',
+                menu: '菜单',
+                twoFingers: ['使用手指导航'],
+                loadError: '全景图加载错误',
+            },
+            loadingTxt: '正在加载。。。', // 也可以使用图片
+            navbar: [
+                'autorotate',
+                'zoom',
+                'caption',
+                'fullscreen',
+
+            ],
+
+            plugins: [
+                [PhotoSphereViewer.MarkersPlugin, {
+                    markers: [{
+                        // image marker that opens the panel when clicked
+                        id: 'h1',
+                        longitude: '0.3715',
+                        latitude: '-0.4371',
+                        html: '<div class="hot_box"><div class="hot_title">弘景大道</div><div id="transition"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: 'A image marker. <b>Click me!</b>',
+                        content: '------<b>abc</b>abc----'
+                    },
+                    {
+                        // image marker that opens the panel when clicked
+                        id: 'h2',
+                        longitude: '4.6957',
+                        latitude: '-0.19',
+                        html: '<div class="hot_box"><div class="hot_title">西湖游泳馆</div><div id="location"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: 'A image marker. <b>Click me!</b>',
+                        content: '------<b>abc</b>abc----'
+                    },
+                    {
+                        // image marker that opens the panel when clicked
+                        id: 'h3',
+                        longitude: '4.96',
+                        latitude: '-0.375',
+                        html: '<div class="hot_box"><div class="hot_title">重庆展览馆</div><div id="transition"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: 'A image marker. <b>Click me!</b>',
+                        content: '------<b>abc</b>abc----'
+                    },
+                    {
+                        // image marker that opens the panel when clicked
+                        id: 'h4',
+                        longitude: '5.248',
+                        latitude: '-0.313',
+                        html: '<div class="hot_box"><div class="hot_title">红花小区</div><div id="transition"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: 'A image marker. <b>Click me!</b>',
+                        content: '------<b>abc</b>abc----'
+                    },
+                    {
+                        // image marker that opens the panel when clicked
+                        id: 'h5',
+                        longitude: '5.898',
+                        latitude: '-0.2979',
+                        html: '<div class="hot_box"><div class="hot_title">希尔顿大酒店</div><div id="arrow_down"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: '希尔顿大酒店',
+                        content: '------<b>希尔顿大酒店</b>希尔顿大酒店----'
+                    },
+                    {
+                        // image marker that opens the panel when clicked
+                        id: 'h6',
+                        longitude: '1.6275',
+                        latitude: '-0.2308',
+                        html: '<div class="hot_box"><div class="hot_title">仁和立交桥</div><div id="transition"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: 'A image marker. <b>Click me!</b>',
+                        content: '------<b>abc</b>abc----'
+                    },
+                    {
+                        // image marker that opens the panel when clicked
+                        id: 'h7',
+                        longitude: '3.94319',
+                        latitude: '0.093769',
+                        html: '<div class="hot_box"><div class="hot_title">照母山国家森林公园</div><div id="transition"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: 'A image marker. <b>Click me!</b>',
+                        content: '------<b>abc</b>abc----'
+                    },
+                    {
+                        // image marker that opens the panel when clicked
+                        id: 'h8',
+                        longitude: '3.298',
+                        latitude: '-0.63365',
+                        html: '<div class="hot_box"><div class="hot_title">巴黎凯旋门</div><div id="transition"></div></div>',
+                        // className:'abc',
+                        // image: 'https://photo-sphere-viewer.js.org/assets/pin-blue.png',
+                        anchor: 'bottom center',
+                        tooltip: 'A image marker. <b>Click me!</b>',
+                        content: '------<b>abc</b>abc----'
+                    },
+                    ]
+                }]
+            ],
+        });
+
+        // viewer.once('ready',()=>{
+        //     viewer.rotate({
+        //         x:1500,
+        //         y:1000
+        //     })
+        // });
+
+        viewer.on('click', (e, data) => {
+            console.log(`${data.rightclick ? 'right clicked' : 'clicked'} at longitude: ${data.longitude} latitude: ${data.latitude}`);
+        });
+    </script>
+</body>
+
+</html>

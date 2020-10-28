@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photograph</title>
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/jquery.fancybox.min.js"></script>
+    <link rel="stylesheet" href="./css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+        img {
+            width: 480px;
+            height: 420px;
+            margin-top: 40px;
+            border: 10px solid #cfcfcf;
+        }
+
+        p {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row"><br><br><br><br></div>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                    aria-selected="true">A 户型</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                    aria-controls="profile" aria-selected="false">B 户型</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                    <div class="col text-center">
+                        <a href="./images/static/A-1.jpg" data-fancybox data-caption="户型A">
+                            <img src="./images/static/A-1-thumbnail.jpg" alt="" />
+                        </a>
+                        <p>A-1：建筑面积：97.97</p>
+                    </div>
+                    <div class="col text-center">
+                        <a href="./images/static/A-2.jpg" data-fancybox data-caption="户型B">
+                            <img src="./images/static/A-2-thumbnail.jpg" alt="" />
+                        </a>
+                        <p>A-2：建筑面积：98.27</p>
+
+                    </div>
+                    <div class="col text-center">
+                        <a href="./images/static/A-3.jpg" data-fancybox data-caption="户型A">
+                            <img src="./images/static/A-3-thumbnail.jpg" alt="" />
+                        </a>
+                        <p>A-3：建筑面积：90.56</p>
+
+                    </div>
+                    <div class="col text-center">
+                        <a href="./images/static/A-5.jpg" data-fancybox data-caption="户型B">
+                            <img src="./images/static/A-5-thumbnail.jpg" alt="" />
+                        </a>
+                        <p>A-5：建筑面积：114.18</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+            </div>
+        </div>
+
+        <div class="row"><br><br><br><br></div>
+    </div>
+    <script src="./js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D viewer</title>
+    <link rel="stylesheet" href="./dist/photo-sphere-viewer.css" />
+    <link rel="stylesheet" href="./dist/plugins/markers.css">
+    <script src="./js/three.min.js"></script>
+    <script src="./js/browser.min.js"></script>
+    <script src="./js/polyfill.min.js"></script>
+    <script src="./dist/photo-sphere-viewer.js"></script>
+    <script src="./dist/plugins/markers.js"></script>
+    <style>
+        /* the viewer container must have a defined size */
+        #viewer {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hot_box {
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .hot_title {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            border: 1px solid #ffffff;
+            padding: 3px 10px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .hot_image {
+            height: 32px;
+            background-image: url("./images/down-arrow.png");
+            background-position: bottom center;
+            background-repeat: no-repeat;
+            background-size: 28px;
+        }
+
+        .custom_button {
+            width: auto;
+        }
+
+        .custom_button_actived {
+            width: auto;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="viewer">
+    </div>
+    <script>
+        var viewer = new PhotoSphereViewer.Viewer({
+            container: document.querySelector('#viewer'),
+            panorama: './images/static/20201020153038.jpg',
+            caption: "鸟瞰全景",
+            loadingImg: './images/loading.gif',
+            defaultZoomLvl: 50,
+            autorotateDelay: 1000, // 多久开始旋转
+            autorotateSpeed: '1rpm',
+            lang: {
+                autorotate: '自动旋转',
+                zoom: '缩放',
+                zoomOut: '缩小',
+                zoomIn: '放大',
+                download: '下载',
+                fullscreen: '全屏',
+                menu: '菜单',
+                twoFingers: ['使用手指导航'],
+                loadError: '全景图加载错误',
+            },
+            loadingTxt: '正在加载。。。', // 也可以使用图片
+            navbar: [
+                'autorotate',
+                'zoom',
+                'caption',
+                // {
+                //     id: 'my-button1',
+                //     content: '鸟瞰全景',
+                //     className: 'custom_button custom_button_actived',
+                //     onClick: () => {
+                //         viewer.setPanorama('./images/20201020153038.jpg')
+                //             .then(document.querySelector('.custom_button').className += ' custom_button_actived');
+                //     }
+                // },
+                // {
+                //     id: 'my-button2',
+                //     content: '区位配套',
+                //     className: 'custom_button',
+                //     onClick: () => {
+                //         viewer.setPanorama('./images/20201020153038.jpg')
+                //             .then();
+                //     }
+                // },
+                // {
+                //     id: 'my-button3',
+                //     content: '景观漫游',
+                //     className: 'custom_button',
+                //     onClick: () => {
+                //         viewer.setPanorama('./images/20201020153030.jpg')
+                //             .then();
+                //     }
+                // },
+                // {
+                //     id: 'my-button4',
+                //     content: '户型展示',
+                //     title: '户型展示',
+                //     className: 'custom_button',
+                //     onClick: () => {
+                //         viewer.setPanorama('./images/20201020153030.jpg')
+                //             .then();
+                //     }
+                // },
+                // {
+                //     id: 'my-button5',
+                //     content: '宣传大片',
+                //     className: 'custom_button',
+                //     onClick: () => {
+                //         viewer.setPanorama('./images/20201020153030.jpg')
+                //             .then();
+                //     }
+                // },
+                'fullscreen',
+
+            ],
+        });
+
+        // viewer.once('ready',()=>{
+        //     viewer.rotate({
+        //         x:1500,
+        //         y:1000
+        //     })
+        // });
+
+        viewer.on('click', (e, data) => {
+            console.log(`${data.rightclick ? 'right clicked' : 'clicked'} at longitude: ${data.longitude} latitude: ${data.latitude}`);
+        });
+    </script>
+</body>
+
+</html>
